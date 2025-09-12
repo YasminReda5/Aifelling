@@ -1,0 +1,55 @@
+.reset-form {
+    background-color: #fff;
+    padding: 30px 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: 50px auto;
+    font-family: Arial, sans-serif;
+}
+
+.reset-form h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.reset-form form div {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555;
+}
+
+.reset-form input[type="email"],
+.reset-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+.reset-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #aef5b7;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.reset-form button:hover {
+    background-color: #39ec6c;
+}
+
+.reset-form p {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+    margin-bottom: 15px;
+}

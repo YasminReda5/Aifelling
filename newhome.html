@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="styles.css">
+<title>تحليل المشاعر</title>
+</head>
+<body>
+
+<img src="https://media.istockphoto.com/id/1133905340/vector/greeting-sign-hello-symbol.jpg?s=612x612&w=0&k=20&c=bRlrvDdp2EAW3bi3f6wEMdVQs_G3_eZn3ZrwtfQQ6pw=" width="40" height="40">
+
+<a href="fristpage.html"><button class="nav-home">Home</button></a>
+<a href="about.html"><button class="nav-about">About</button></a>
+<a href="Contact_Us.html"><button class="nav-contact">Contact Us</button></a>
+
+<div class="all">
+    <div class="output-container">
+        <h2>Chat History:</h2>
+        <div class="new">
+            <div id="chatHistory"></div>
+        </div>
+    </div>
+
+    <div class="input-container">
+        <div class="setting">
+            <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/3524/3524659.png" width="25" height="25"></a>
+        </div>
+
+        <a href="Nawaccount.html">
+            <div class="login">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI4yKnjT4EmZwDGMxrPtjt4xJChaDC79N-AzzfU0uKs8LHI43gM3imE2MA5M6WzttveH8&usqp=CAU" width="20" height="20">
+            </div>
+        </a>
+
+        <form onsubmit="analyzeSentiment(event)">
+            <div class="fixed-input">
+                <input type="text" id="userInput" name="userInput" placeholder="ask sayhalo anything........" dir="ltr">
+                <button type="submit">send</button>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<script>
+async function analyzeSentiment(event) {
+    event.preventDefault();
+
+    const userInput = document.getElementById('userInput');
+    const text = userInput.value.trim();
+
+    if (!text) {
+        alert("يرجى إدخال نص للتحليل!");
+        return;
+    }
+
+    try {
+        // أرسل النص إلى Flask
+        const response = await fetch('http://127.0.0.1:5000/predict', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ text: text })
+        });
+
+        if (!response.ok) {
+            throw new Error("خطأ في الخادم!");
+        }
+
+        const data = await response.json();
+
+    
+        const chatHistory = document.getElementById('chatHistory');
+        const newEntry = document.createElement('div');
+        newEntry.innerHTML = `
+            <p><strong>سؤال:</strong> ${text}</p>
+            <p><strong>نتيجة التحليل:</strong> ${data.sentiment}</p><hr>`;
+        chatHistory.appendChild(newEntry);
+
+    
+        await fetch('connecthome.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `userInput=${encodeURIComponent(text)}&prediction=${encodeURIComponent(data.sentiment)}`
+        });
+
+        userInput.value = "";
+
+    } catch (error) {
+        console.error("Error:", error);
+        alert("حدث خطأ أثناء الاتصال بالخادم.");
+    }
+}
+</script>
+
+</body>
+</html>

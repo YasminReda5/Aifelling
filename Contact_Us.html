@@ -1,0 +1,98 @@
+<!-- <!DOCTYPE html>
+<html lang="ar">
+<head>
+   
+    <link rel="stylesheet" href="styles.css">
+    
+    <title>تحليل المشاعر</title>
+</head>
+<body>
+    <img src="https://img.freepik.com/premium-vector/ai-logo-template-vector-with-white-background_1023984-15069.jpg" width="40px" height="40px">
+
+    
+        <a href="home.html">  <button class="nav-home">Home</button></a>
+        <a href="about.html">  <button class="nav-about">About</button></a>
+        <a href="Contact_Us.html"> <button class="nav-contact">Contact Us</button></a>
+        <div class="problem">
+            <h1 class="tell_us">Tell us your problem</h1>
+            <div>
+            <form>
+                <label class="emain">Name*</label>
+            <input  type="text"> <br>
+        </form>
+        <br>
+        <form>
+        <label class="emain">Email*</label>
+            <input  type="text" ></form> <br>
+    
+           <form>
+            <label class="emain">Phone</label>
+             <input  type="text" ></form> <br>
+           <form>
+            <label class="emain">Subject*</label>
+            <input  type="text" > </form><br>
+           <div class="mass"> 
+            <textarea rows="20" cols="65"  placeholder="massage*........"></textarea>
+            
+           </div>
+            <div class su><a href="https://accounts.google.com/SignOutOptions?hl=en&continue=https://mail.google.com/mail/&service=mail&ec=GBRAFw"> <input  type="submit" ></form></a> <br></div>
+            </div>
+            </div>
+    
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+     <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    
+    <title>تحليل المشاعر</title>
+</head>
+<body>
+    <img src="https://media.istockphoto.com/id/1133905340/vector/greeting-sign-hello-symbol.jpg?s=612x612&w=0&k=20&c=bRlrvDdp2EAW3bi3f6wEMdVQs_G3_eZn3ZrwtfQQ6pw=" width="40px" height="40px">
+
+    <a href="newhome.html">  <button class="nav-home">Home</button></a>
+    <a href="about.html">  <button class="nav-about">About</button></a>
+    <a href="Contact_Us.html"> <button class="nav-contact">Contact Us</button></a>
+
+    <div class="problem">
+        <h1 class="tell_us">Tell us your problem</h1>
+<!-- <form action="mailto:redayasmin181@gmail.com" method="post" enctype="text/plain" onsubmit="return validateForm()"> -->
+            <form action="connect_contact_us.php" method="post">
+    <label>Name*</label>
+    <input type="text" name="Name" required><br><br>
+
+    <label>Email*</label>
+    <input type="email" name="Email" required><br><br>
+
+    <label>Phone*</label>
+    <input type="text" name="Phone"><br><br>
+
+    <label>Subject*</label>
+    <input type="text" name="subject" required><br><br>
+
+    <textarea name="mass" rows="10" cols="50" placeholder="Message*" required></textarea><br><br>
+
+    <input type="submit" value="Submit">
+</form>
+
+    </div>
+
+    <script>
+        function validateForm() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !subject || !message) {
+                alert('Please fill in all required fields.');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
