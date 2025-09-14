@@ -1,4 +1,8 @@
 <?php
+require __DIR__ . '/vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
@@ -31,13 +35,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $mail = new PHPMailer(true);
         try {
+            
             $mail->SMTPDebug = 2;
             $mail->isSMTP();
             $mail->Host = 'sandbox.smtp.mailtrap.io';
             $mail->SMTPAuth = true;
             $mail->Port = 2525;
-            $mail->Username = 'ca2543ef1f0a4a';
-            $mail->Password = 'ec210c52677254';
+            $mail->Username =$_ENV['mail'];
+            $mail->Password = $_ENV['password'];
 
             $mail->setFrom('redayasmin181@gmail.com', 'اعادة تعيين كلمة المرور');
             $mail->addAddress($userEmail);
