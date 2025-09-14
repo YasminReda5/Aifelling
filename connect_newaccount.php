@@ -1,6 +1,13 @@
 <?php
 session_start();
+require __DIR__ . '/vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+$host = $_ENV['DB_HOST'];
+$user = $_ENV['DB_USER'];
+$pass = $_ENV['DB_PASS'];
+$db   = $_ENV['DB_creataccount'];
 // جلب البيانات من الفورم
 $f1 = $_POST['username'];
 $f2 = $_POST['email'];
@@ -13,7 +20,7 @@ if ($f3 !== $f4) {
 }
 
 // الاتصال بقاعدة البيانات
-$conn = mysqli_connect('localhost', 'AiFelling', 'Yasmin225092', 'creataccount');
+$conn=mysqli_connect($host,$user,$pass,$db);
 if (!$conn) {
     die("فشل الاتصال بقاعدة البيانات: " . mysqli_connect_error());
 }
