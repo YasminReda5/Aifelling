@@ -1,6 +1,13 @@
 <?php
-$conn=mysqli_connect('localhost','AiFelling','Yasmin225092','creataccount');
+require __DIR__ . '/vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+$host = $_ENV['DB_HOST'];
+$user = $_ENV['DB_USER'];
+$pass = $_ENV['DB_PASS'];
+$db = $_ENV['DB_creataccount'];
+$conn=mysqli_connect($host,$user,$pass,$db);
 $email = $_POST['email'];
 $password = $_POST['password'];
 
