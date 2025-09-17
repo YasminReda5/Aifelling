@@ -2,9 +2,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'C:/xamp/htdocs/cns/PHPMailer-master/src/Exception.php';
-require 'C:/xamp/htdocs/cns/PHPMailer-master/src/PHPMailer.php';
-require 'C:/xamp/htdocs/cns/PHPMailer-master/src/SMTP.php';
+require __DIR__ . '/vendor/autoload.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name    = $_POST['Name'];
