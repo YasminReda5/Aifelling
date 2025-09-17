@@ -1,22 +1,27 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
+
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+$mail = new PHPMailer(true);
+// require 'C:/xamp/htdocs/cns/PHPMailer-master/src/Exception.php';
+// require 'C:/xamp/htdocs/cns/PHPMailer-master/src/PHPMailer.php';
+// require 'C:/xamp/htdocs/cns/PHPMailer-master/src/SMTP.php';
 
-require 'C:/xamp/htdocs/cns/PHPMailer-master/src/Exception.php';
-require 'C:/xamp/htdocs/cns/PHPMailer-master/src/PHPMailer.php';
-require 'C:/xamp/htdocs/cns/PHPMailer-master/src/SMTP.php';
-
+$host = $_ENV['DB_HOST'];
+$user = $_ENV['DB_USER'];
+$pass = $_ENV['DB_PASS'];
+$db = $_ENV['DB_creataccount'];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $userEmail = trim($_POST['email']);
 
-    $conn = new mysqli('localhost', 'AiFelling', 'Yasmin225092', 'creataccount');
+    $conn = new mysqli($host, $user, $pass, $db);
     if ($conn->connect_error) {
-        die("فشل الاتصال: " . $conn->connect_error);
-    }
+    die("فشل الاتصال: " . $conn->connect_error);
+}
 
     // تأكد أن الإيميل موجود
     $stmt = $conn->prepare("SELECT emails FROM accounts WHERE emails=?");
@@ -38,9 +43,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
             $mail->SMTPDebug = 2;
             $mail->isSMTP();
-            $mail->Host = 'sandbox.smtp.mailtrap.io';
+            $mail->Host = $_ENV['HOSTmail'];
             $mail->SMTPAuth = true;
-            $mail->Port = 2525;
+            $mail->Port = $_ENV['portmail'];
             $mail->Username =$_ENV['mail'];
             $mail->Password = $_ENV['password'];
 
